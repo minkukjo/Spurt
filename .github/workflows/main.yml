@@ -16,3 +16,4 @@ jobs:
           owner: minkukjo
           base: main
           head: main
+          token: ${{ secrets.PERSONAL_TOKEN }}
