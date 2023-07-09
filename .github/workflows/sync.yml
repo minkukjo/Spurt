@@ -2,10 +2,10 @@
 name: Merge upstream branches
 on:
   workflow_dispatch:
-#   schedule:
-#      # actually, ~5 minutes is the highest
-#      # effective frequency you will get
-#     - cron:  '*/5 * * * *'
+  schedule:
+     # actually, ~5 minutes is the highest
+     # effective frequency you will get
+    - cron:  '* * * * *'
 jobs:
   merge:
     runs-on: ubuntu-latest
