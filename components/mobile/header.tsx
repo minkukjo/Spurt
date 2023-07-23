@@ -1,29 +1,14 @@
 import { useSession } from 'next-auth/react';
 import Logo from 'img/Frame 2609495.svg';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Header() {
+export default function MobileHeader() {
    const { data: session } = useSession();
-   const router = useRouter();
 
    return (
       <div className="flex flex-row h-[100px] justify-between border-b border-[#E9E9E9]">
          <div className="flex content-center items-center">
             <Logo></Logo>
-
-            <div className="flex justify-between ml-[130px]">
-               <Link href="/" className={`${router.pathname === '/' ? 'font-bold' : ''} mr-[50px]`}>
-                  질문 모음
-               </Link>
-               <Link href="/note" className={`${router.pathname === '/note' ? 'font-bold' : ''} mr-[50px]`}>
-                  10분 노트
-               </Link>
-               <Link href="/project" className={`${router.pathname === '/project' ? 'font-bold' : ''}`}>
-                  나의 프로젝트
-               </Link>
-            </div>
          </div>
          <div className="flex flex-row items-center w-16">
             {session ? (
