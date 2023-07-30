@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Home(props: any) {
   const router = useRouter();
@@ -26,11 +27,11 @@ export default function Home(props: any) {
 
   const { userExists, isLoggined } = props;
 
-  useEffect(() => {
-    if (!userExists && isLoggined) {
-      router.push('/selectJob');
-    }
-  });
+  // useEffect(() => {
+  //   if (!userExists && isLoggined) {
+  //     router.push('/selectJob');
+  //   }
+  // });
 
   return (
     <>
@@ -42,7 +43,9 @@ export default function Home(props: any) {
           <p>오늘도 마지막까지 화이팅!</p>
         </div>
         <div className="flex items-end">
-          <ButtonS>질문-답변 만들기</ButtonS>
+          <Link href={'/post'}>
+            <ButtonS>질문-답변 만들기</ButtonS>
+          </Link>
         </div>
       </div>
       <div className="text-title2 text-gray-700 mb-[20px] mt-[80px]">
@@ -115,13 +118,13 @@ export default function Home(props: any) {
   );
 }
 
-export async function getServerSideProps() {
-  const response = await ApiClient.get('/v1/user/exist');
+// export async function getServerSideProps() {
+//   const response = await ApiClient.get('/v1/user/exist');
 
-  return {
-    props: {
-      userExists: response.data.data.userExists,
-      isLoggined: false,
-    },
-  };
-}
+//   return {
+//     props: {
+//       userExists: response.data.data.userExists,
+//       isLoggined: false,
+//     },
+//   };
+// }
