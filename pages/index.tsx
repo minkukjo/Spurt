@@ -1,28 +1,26 @@
 import ButtonS from '@/components/pc/Keywords/Buttons/button-s';
 import ButtonXs from '@/components/pc/Keywords/Buttons/button-xs';
 import RandomBtn from '@/components/pc/Keywords/Buttons/randomBtn';
+import Carousel from '@/components/pc/Keywords/Carousel/Carousel';
 import AnswerCard from '@/components/pc/Keywords/Questions/AnswerCard';
 import QuestionCard from '@/components/pc/Keywords/Questions/QuestionCard';
+import { mainMyCategory, mainOtherCategory } from '@/const/categories';
+import {
+  selectedMainMyCategoriesState,
+  selectedMainOthersCategoriesState,
+} from '@/status/MainStatus';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 export default function Home() {
+  const [selectedMyCategory, setSelectedMyCategory] = useRecoilState(
+    selectedMainMyCategoriesState,
+  );
+  const [selectedOthersCategory, setSelectedOthersCategory] = useRecoilState(
+    selectedMainOthersCategoriesState,
+  );
   const [recent, setRecent] = useState(false);
-  const otherCategory = [
-    '직무지식',
-    '직무경험',
-    '협업경험',
-    '장단점',
-    '실패경험',
-    '기본',
-  ];
-  const myCategory = [
-    '전체',
-    '직무지식',
-    '직무경험',
-    '협업경험',
-    '실패경험',
-    '기본',
-  ];
+
   return (
     <>
       <div className="text-title1 text-gray-700 flex justify-between mt-[60px]">
@@ -39,11 +37,12 @@ export default function Home() {
       <div className="text-title2 text-gray-700 mb-[20px] mt-[80px]">
         <p>나의 질문 모아보기</p>
       </div>
-      <div className="flex">
-        {myCategory.map((category) => {
-          return <ButtonXs key={category}>{category}</ButtonXs>;
-        })}
-      </div>
+      <Carousel
+        categories={mainMyCategory}
+        isPc={true}
+        selectedCateogry={selectedMyCategory}
+        setCategory={setSelectedMyCategory}
+      ></Carousel>
 
       <div className="flex flex-col bg-white mt-5 mb-[100px] px-[30px] pt-[30px] pb-[80px] rounded-[20px] ">
         <div className="flex mb-5 items-center justify-between">
@@ -83,11 +82,12 @@ export default function Home() {
         </p>
         <p className="text-title3">최근에 올린 질문이에요</p>
       </div>
-      <div className="flex">
-        {otherCategory.map((category) => {
-          return <ButtonXs key={category}>{category}</ButtonXs>;
-        })}
-      </div>
+      <Carousel
+        categories={mainOtherCategory}
+        isPc={true}
+        selectedCateogry={selectedOthersCategory}
+        setCategory={setSelectedOthersCategory}
+      ></Carousel>
 
       <div className="flex flex-col mt-5 bg-white rounded-[20px] pt-[30px] px-[30px] mb-[100px]">
         <div className="flex justify-around gap-3">
