@@ -66,6 +66,10 @@ export default function Home(props: any) {
     getRandomQuestion();
   }, [selectedMyCategory, selectedOthersCategory, page]);
 
+  const handleClickPin = (post: QuestionResponse) => {
+    setMyPost(post);
+  };
+
   return (
     <>
       <div className="absolute top-[0px] left-0 bottom-0 bg-main-100 w-full h-[580px]"></div>
@@ -131,6 +135,8 @@ export default function Home(props: any) {
                       mainText={item.mainText}
                       categoryList={item.categoryList}
                       createTimestamp={item.createTime}
+                      isPinned={item.pinIndicator}
+                      onClickPin={handleClickPin}
                     />
                   );
                 })}
