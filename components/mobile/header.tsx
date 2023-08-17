@@ -8,16 +8,16 @@ export default function MobileHeader() {
 
   return (
     <>
-      <div className="flex flex-row pb-[16px] items-end h-[90px] border-b border-[#E9E9E9] justify-between p-[16px] bg-main-100">
+      <div className="flex flex-row pb-[16px] items-end h-[90px] border-b border-b-gray_line justify-between px-[16px] bg-main-100">
         <div className="flex content-center ">
           <Logo></Logo>
         </div>
-        <div className="flex flex-row w-16">
+        <div className="flex flex-row">
           {session ? (
             <Image
               src={session?.user?.image!}
-              width="40"
-              height="40"
+              width="32"
+              height="32"
               className="rounded-full "
               alt="프로필 사진"
             ></Image>
